@@ -1,25 +1,25 @@
-create database if not exists `projeto_scdas`;
-use `projeto_scdas`;
+create database if not exists `scdas`;
+use `scdas`;
 
-drop table if exists `projeto_scdas`.`atendidos`;
-drop table if exists `projeto_scdas`.`ruas`;
-drop table if exists `projeto_scdas`.`bairros`;
-drop table if exists `projeto_scdas`.`cidades`;
-drop table if exists `projeto_scdas`.`estados`;
-drop table if exists `projeto_scdas`.`dados_pessoais`;
-drop table if exists `projeto_scdas`.`responsaveis`;
-drop table if exists `projeto_scdas`.`contatos`;
-drop table if exists `projeto_scdas`.`funcionarios`;
-drop table if exists `projeto_scdas`.`usuarios`;
+drop table if exists `scdas`.`atendidos`;
+drop table if exists `scdas`.`ruas`;
+drop table if exists `scdas`.`bairros`;
+drop table if exists `scdas`.`cidades`;
+drop table if exists `scdas`.`estados`;
+drop table if exists `scdas`.`dados_pessoais`;
+drop table if exists `scdas`.`responsaveis`;
+drop table if exists `scdas`.`contatos`;
+drop table if exists `scdas`.`funcionarios`;
+drop table if exists `scdas`.`usuarios`;
 
-create table `projeto_scdas`.`usuarios` (
+create table `scdas`.`usuarios` (
 	`usu_login` varchar(100) not null,
 	`usu_senha` varchar(25) not null,
 	`usu_tipo` varchar(20) not null,
 	primary key (`usu_login`)
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`funcionarios` (
+create table `scdas`.`funcionarios` (
 	`fun_codigo` int not null auto_increment,
 	`fun_nome` varchar(100) not null,
 	`fun_programaprojeto` varchar(100) not null,
@@ -32,12 +32,12 @@ create table `projeto_scdas`.`funcionarios` (
 	index `fk_funcionarios_usuarios_idx` (`usu_login` asc),
 	constraint `fk_funcionarios_usuarios`
 		foreign key (`usu_login`)
-		references `projeto_scdas`.`usuarios` (`usu_login`)
+		references `scdas`.`usuarios` (`usu_login`)
 		on delete no action
 		on update no action
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`contatos` (
+create table `scdas`.`contatos` (
 	`con_codigo` int not null auto_increment,
 	`con_telefone` varchar(20) not null,
 	`con_celular` varchar(20) not null,
@@ -45,14 +45,14 @@ create table `projeto_scdas`.`contatos` (
 	primary key (`con_codigo`)
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`responsaveis` (
+create table `scdas`.`responsaveis` (
 	`res_cpf` varchar(20) not null,
 	`res_rg` varchar(20) not null,
 	`res_nome` varchar(100) not null,
 	primary key (`res_cpf`)
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`dados_pessoais` (
+create table `scdas`.`dados_pessoais` (
 	`dad_cpf` varchar(20) not null,
 	`dad_rg` varchar(20) not null,
 	`dad_nome` varchar(100) not null,
@@ -63,18 +63,18 @@ create table `projeto_scdas`.`dados_pessoais` (
 	primary key (`dad_cpf`),
 	constraint `fk_dados_pessoais_responsaveis1`
 		foreign key (`res_cpf`)
-		references `projeto_scdas`.`responsaveis` (`res_cpf`)
+		references `scdas`.`responsaveis` (`res_cpf`)
 		on delete no action
 		on update no action
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`estados` (
+create table `scdas`.`estados` (
 	`est_id` varchar(2) not null,
 	`est_nome` varchar(100) not null,
 	primary key (`est_id`)
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`cidades` (
+create table `scdas`.`cidades` (
 	`cid_codigo` int not null auto_increment,
 	`cid_nome` varchar(100) not null,
 	`est_id` varchar(2) not null,
@@ -82,12 +82,12 @@ create table `projeto_scdas`.`cidades` (
 	index `fk_cidades_estados1_idx` (`est_id` asc),
 	constraint `fk_cidades_estados1`
 		foreign key (`est_id`)
-		references `projeto_scdas`.`estados` (`est_id`)
+		references `scdas`.`estados` (`est_id`)
 		on delete no action
 		on update no action
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`bairros` (
+create table `scdas`.`bairros` (
 	`bai_codigo` int not null auto_increment,
 	`bai_nome` varchar(100) not null,
 	`cid_codigo` int not null,
@@ -95,12 +95,12 @@ create table `projeto_scdas`.`bairros` (
 	index `fk_bairros_cidades1_idx` (`cid_codigo` asc),
 	constraint `fk_bairros_cidades1`
 		foreign key (`cid_codigo`)
-		references `projeto_scdas`.`cidades` (`cid_codigo`)
+		references `scdas`.`cidades` (`cid_codigo`)
 		on delete no action
 		on update no action
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`ruas` (
+create table `scdas`.`ruas` (
 	`rua_numero` int not null,
 	`rua_nome` varchar(100) not null,
 	`bai_codigo` int not null,
@@ -108,12 +108,12 @@ create table `projeto_scdas`.`ruas` (
 	index `fk_ruas_bairros1_idx` (`bai_codigo` asc),
 	constraint `fk_ruas_bairros1`
 		foreign key (`bai_codigo`)
-		references `projeto_scdas`.`bairros` (`bai_codigo`)
+		references `scdas`.`bairros` (`bai_codigo`)
 		on delete no action
 		on update no action
 ) ENGINE = InnoDB;
 
-create table `projeto_scdas`.`atendidos` (
+create table `scdas`.`atendidos` (
 	`ate_codigo` int not null auto_increment,
 	`ate_dataadmissao` date not null,
 	`ate_datadesligamento` date not null,
@@ -137,17 +137,17 @@ create table `projeto_scdas`.`atendidos` (
 	index `fk_atendidos_ruas1_idx` (`rua_numero` asc),
 	constraint `fk_atendidos_contatos1`
 		foreign key (`con_codigo`)
-		references `projeto_scdas`.`contatos` (`con_codigo`)
+		references `scdas`.`contatos` (`con_codigo`)
 		on delete no action
 		on update no action,
 	constraint `fk_atendidos_dados_pessoais1`
 		foreign key (`dad_cpf`)
-		references `projeto_scdas`.`dados_pessoais` (`dad_cpf`)
+		references `scdas`.`dados_pessoais` (`dad_cpf`)
 		on delete no action
 		on update no action,
 	constraint `fk_atendidos_ruas1`
 		foreign key (`rua_numero`)
-		references `projeto_scdas`.`ruas` (`rua_numero`)
+		references `scdas`.`ruas` (`rua_numero`)
 		on delete no action
 		on update no action
 ) ENGINE = InnoDB;

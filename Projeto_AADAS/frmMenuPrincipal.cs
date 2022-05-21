@@ -19,10 +19,8 @@ namespace Projeto_AADAS
             if (acesso != "Administrador")
             {
                 cadastroToolStripMenuItem.Visible = false;
-                relatóriosToolStripMenuItem.Visible = false;
                 ferramentasToolStripMenuItem.Visible = false;
 
-                btnRelatorios.Enabled = false;
                 btnFuncionarios.Enabled = false;
                 btnCadastrar.Enabled = false;
                 btnBackup.Enabled = false;
@@ -45,13 +43,6 @@ namespace Projeto_AADAS
         {
             FrmPesquisa frmPesquisa = new FrmPesquisa(acesso);
             frmPesquisa.ShowDialog();
-        }
-
-        private void RelatóriosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmListaRelAtendido frmRelatorio = new FrmListaRelAtendido();
-            frmRelatorio.ShowDialog();
-
         }
 
         private void BackupToolStripMenuItem_Click(object sender, EventArgs e)

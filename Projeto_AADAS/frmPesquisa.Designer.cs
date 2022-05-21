@@ -101,7 +101,7 @@
             this.rbData.TabIndex = 7;
             this.rbData.TabStop = true;
             this.rbData.UseVisualStyleBackColor = true;
-            this.rbData.CheckedChanged += new System.EventHandler(this.Atualizar);
+            this.rbData.CheckedChanged += new System.EventHandler(this.TxtPesquisar_TextChanged);
             // 
             // cbData
             // 
@@ -117,7 +117,7 @@
             this.cbData.Name = "cbData";
             this.cbData.Size = new System.Drawing.Size(325, 30);
             this.cbData.TabIndex = 6;
-            this.cbData.SelectedIndexChanged += new System.EventHandler(this.Atualizar);
+            this.cbData.SelectedIndexChanged += new System.EventHandler(this.TxtPesquisar_TextChanged);
             // 
             // dtpFinal
             // 
@@ -127,7 +127,7 @@
             this.dtpFinal.Name = "dtpFinal";
             this.dtpFinal.Size = new System.Drawing.Size(154, 26);
             this.dtpFinal.TabIndex = 5;
-            this.dtpFinal.ValueChanged += new System.EventHandler(this.Atualizar);
+            this.dtpFinal.ValueChanged += new System.EventHandler(this.TxtPesquisar_TextChanged);
             // 
             // dtpInicial
             // 
@@ -137,7 +137,7 @@
             this.dtpInicial.Name = "dtpInicial";
             this.dtpInicial.Size = new System.Drawing.Size(165, 26);
             this.dtpInicial.TabIndex = 4;
-            this.dtpInicial.ValueChanged += new System.EventHandler(this.Atualizar);
+            this.dtpInicial.ValueChanged += new System.EventHandler(this.TxtPesquisar_TextChanged);
             // 
             // txtPesquisar
             // 
@@ -157,7 +157,7 @@
             this.rbCPF.TabIndex = 2;
             this.rbCPF.Text = "CPF";
             this.rbCPF.UseVisualStyleBackColor = true;
-            this.rbCPF.CheckedChanged += new System.EventHandler(this.Atualizar);
+            this.rbCPF.CheckedChanged += new System.EventHandler(this.TxtPesquisar_TextChanged);
             // 
             // rbCRA
             // 
@@ -168,7 +168,7 @@
             this.rbCRA.TabIndex = 1;
             this.rbCRA.Text = "CRA";
             this.rbCRA.UseVisualStyleBackColor = true;
-            this.rbCRA.CheckedChanged += new System.EventHandler(this.Atualizar);
+            this.rbCRA.CheckedChanged += new System.EventHandler(this.TxtPesquisar_TextChanged);
             // 
             // rbNome
             // 
@@ -181,7 +181,7 @@
             this.rbNome.TabStop = true;
             this.rbNome.Text = "Nome do atendido";
             this.rbNome.UseVisualStyleBackColor = true;
-            this.rbNome.CheckedChanged += new System.EventHandler(this.Atualizar);
+            this.rbNome.CheckedChanged += new System.EventHandler(this.TxtPesquisar_TextChanged);
             // 
             // btnLimpar
             // 

@@ -180,12 +180,6 @@
     <Compile Include="FrmFuncionarios.Designer.cs">
       <DependentUpon>FrmFuncionarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmListaRelAtendido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmListaRelAtendido.Designer.cs">
-      <DependentUpon>FrmListaRelAtendido.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,9 +232,6 @@
     <EmbeddedResource Include="FrmFuncionarios.resx">
       <DependentUpon>FrmFuncionarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmListaRelAtendido.resx">
-      <DependentUpon>FrmListaRelAtendido.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,7 +250,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Relatorios\RelListaAtendidos.rdlc" />
     <EmbeddedResource Include="Relatorios\RelAtendidos.rdlc" />
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>

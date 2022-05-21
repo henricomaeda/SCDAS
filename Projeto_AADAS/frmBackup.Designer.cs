@@ -31,10 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBackup));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBackup = new System.Windows.Forms.Button();
-            this.btnProcurar = new System.Windows.Forms.Button();
+            this.btnProcurar_Backup = new System.Windows.Forms.Button();
             this.txtBackup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnProcurar_Restaurar = new System.Windows.Forms.Button();
             this.btnRestaurar = new System.Windows.Forms.Button();
             this.txtRestaurar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,7 +47,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.groupBox1.Controls.Add(this.btnBackup);
-            this.groupBox1.Controls.Add(this.btnProcurar);
+            this.groupBox1.Controls.Add(this.btnProcurar_Backup);
             this.groupBox1.Controls.Add(this.txtBackup);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -70,21 +71,22 @@
             this.btnBackup.UseVisualStyleBackColor = true;
             this.btnBackup.Click += new System.EventHandler(this.BtnBackup_Click);
             // 
-            // btnProcurar
+            // btnProcurar_Backup
             // 
-            this.btnProcurar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProcurar.Image = global::Projeto_AADAS.Properties.Resources.database_search;
-            this.btnProcurar.Location = new System.Drawing.Point(315, 15);
-            this.btnProcurar.Name = "btnProcurar";
-            this.btnProcurar.Size = new System.Drawing.Size(125, 42);
-            this.btnProcurar.TabIndex = 2;
-            this.btnProcurar.Text = "Procurar";
-            this.btnProcurar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnProcurar.UseVisualStyleBackColor = true;
-            this.btnProcurar.Click += new System.EventHandler(this.BtnProcurar_Click);
+            this.btnProcurar_Backup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProcurar_Backup.Image = global::Projeto_AADAS.Properties.Resources.database_search;
+            this.btnProcurar_Backup.Location = new System.Drawing.Point(315, 15);
+            this.btnProcurar_Backup.Name = "btnProcurar_Backup";
+            this.btnProcurar_Backup.Size = new System.Drawing.Size(125, 42);
+            this.btnProcurar_Backup.TabIndex = 2;
+            this.btnProcurar_Backup.Text = "Procurar";
+            this.btnProcurar_Backup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProcurar_Backup.UseVisualStyleBackColor = true;
+            this.btnProcurar_Backup.Click += new System.EventHandler(this.BtnProcurar_Click);
             // 
             // txtBackup
             // 
+            this.txtBackup.Enabled = false;
             this.txtBackup.Location = new System.Drawing.Point(16, 105);
             this.txtBackup.Name = "txtBackup";
             this.txtBackup.Size = new System.Drawing.Size(293, 26);
@@ -103,22 +105,36 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBox2.Controls.Add(this.btnProcurar_Restaurar);
             this.groupBox2.Controls.Add(this.btnRestaurar);
             this.groupBox2.Controls.Add(this.txtRestaurar);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(21, 189);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(459, 121);
+            this.groupBox2.Size = new System.Drawing.Size(459, 146);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Restauração";
+            // 
+            // btnProcurar_Restaurar
+            // 
+            this.btnProcurar_Restaurar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProcurar_Restaurar.Image = global::Projeto_AADAS.Properties.Resources.database_search;
+            this.btnProcurar_Restaurar.Location = new System.Drawing.Point(315, 16);
+            this.btnProcurar_Restaurar.Name = "btnProcurar_Restaurar";
+            this.btnProcurar_Restaurar.Size = new System.Drawing.Size(125, 42);
+            this.btnProcurar_Restaurar.TabIndex = 4;
+            this.btnProcurar_Restaurar.Text = "Procurar";
+            this.btnProcurar_Restaurar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProcurar_Restaurar.UseVisualStyleBackColor = true;
+            this.btnProcurar_Restaurar.Click += new System.EventHandler(this.btnProcurar_Restaurar_Click);
             // 
             // btnRestaurar
             // 
             this.btnRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRestaurar.Image = global::Projeto_AADAS.Properties.Resources.database_process;
-            this.btnRestaurar.Location = new System.Drawing.Point(315, 38);
+            this.btnRestaurar.Location = new System.Drawing.Point(315, 64);
             this.btnRestaurar.Name = "btnRestaurar";
             this.btnRestaurar.Size = new System.Drawing.Size(125, 64);
             this.btnRestaurar.TabIndex = 4;
@@ -129,7 +145,8 @@
             // 
             // txtRestaurar
             // 
-            this.txtRestaurar.Location = new System.Drawing.Point(16, 76);
+            this.txtRestaurar.Enabled = false;
+            this.txtRestaurar.Location = new System.Drawing.Point(16, 102);
             this.txtRestaurar.Name = "txtRestaurar";
             this.txtRestaurar.Size = new System.Drawing.Size(293, 26);
             this.txtRestaurar.TabIndex = 3;
@@ -138,7 +155,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 57);
+            this.label2.Location = new System.Drawing.Point(13, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 16);
             this.label2.TabIndex = 2;
@@ -149,7 +166,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(503, 329);
+            this.ClientSize = new System.Drawing.Size(503, 355);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -170,12 +187,13 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBackup;
-        private System.Windows.Forms.Button btnProcurar;
-        private System.Windows.Forms.TextBox txtBackup;
         private System.Windows.Forms.Button btnRestaurar;
+        private System.Windows.Forms.Button btnProcurar_Backup;
+        private System.Windows.Forms.TextBox txtBackup;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRestaurar;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnProcurar_Restaurar;
     }
 }

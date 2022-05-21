@@ -2,11 +2,13 @@
 using System;
 using System.Windows.Forms;
 
-
 namespace Projeto_AADAS
 {
     public partial class FrmBackup : Form
     {
+        string backup = string.Empty;
+        string restaurar = string.Empty;
+
         public FrmBackup()
         {
             InitializeComponent();
@@ -17,68 +19,79 @@ namespace Projeto_AADAS
             FolderBrowserDialog dlg = new FolderBrowserDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                txtBackup.Text = dlg.SelectedPath;
+                backup = dlg.SelectedPath;
+                txtBackup.Text = backup;
                 btnBackup.Enabled = true;
             }
         }
 
         private void BtnBackup_Click(object sender, EventArgs e)
         {
-            Classes.Conexao.Conectar();
-            string backup = "C:\\Backup\\backup.sql";
-            MySqlCommand cmd = new MySqlCommand(backup, Classes.Conexao.conn);
-            MySqlBackup bkp = new MySqlBackup(cmd);
-            bkp.ExportToFile(backup);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Backup efetuado com sucesso");
-            btnBackup.Enabled = false;
-            txtBackup.Clear();
-            Classes.Conexao.Desconectar();
-
-            /*
-            if (System.IO.File.Exists(@"C:\Backup\projeto_aadas.sql"))
+            if (backup == String.Empty) MessageBox.Show("Selecione uma pasta para realizar o backup!", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else
             {
-                string caminho = "projeto_aadas" + DateTime.Now.ToString();
-                caminho = caminho.Replace("/", "_");
-                caminho = caminho.Replace(" ", "_");
-                caminho = caminho.Replace(":", "");
-                System.IO.File.Move(@"C:\Backup\Projeto_aadas.sql", @"C:\Backup\" + caminho + ".sql");
+                try
+                {
+                    Classes.Conexao.Conectar();
+                    MySqlCommand cmd = new MySqlCommand(backup, Classes.Conexao.conn);
+                    MySqlBackup bkp = new MySqlBackup(cmd);
+                    bkp.ExportToFile(backup + "\\backup (" + DateTime.Now.ToString("dd-MM-yyyy") + " " + DateTime.Now.ToString("hh-mm-ss") + ").sql");
+                    cmd.ExecuteNonQuery();
+                    txtBackup.Clear();
+                    Classes.Conexao.Desconectar();
+
+                    MessageBox.Show("Backup efetuado com sucesso!\nBackup salvo em:\n\n" + backup, "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    backup = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERRO: " + ex.Message, "Backup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
-                
-            string sql = @"BACKUP DATABASE projeto_aadas TO DISK = '" + txtBackup.Text + "\\projeto_aadas.sql'";
-            MySqlCommand cmd = new MySqlCommand(sql, Classes.Conexao.conn);
-            MySqlBackup bkp = new MySqlBackup(cmd);
-            bkp.ExportToFile(sql);
-                
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Backup efetuado com sucesso");
-            btnBackup.Enabled = false;
-            txtBackup.Clear();
-            Classes.Conexao.Desconectar();
-            */
+        }
+
+        private void btnProcurar_Restaurar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                restaurar = dlg.FileName;
+                txtRestaurar.Text = restaurar;
+                btnRestaurar.Enabled = true;
+            }
         }
 
         private void BtnRestaurar_Click(object sender, EventArgs e)
         {
-            if (System.IO.File.Exists(@"C:\Backup\backup.sql"))
+            if (restaurar != string.Empty)
             {
-                try
+                if (System.IO.File.Exists(restaurar))
                 {
-                    MessageBox.Show("Restauração efetuada com sucesso!\nNecessário reiniciar o sistema...");
-                    System.IO.File.Move(@"C:\Backup\backup.sql", @"C:\Backup\backup_RESTAURA.sql");
-                    Application.Restart();
+                    try
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand())
+                        {
+                            using (MySqlBackup mb = new MySqlBackup(cmd))
+                            {
+                                cmd.Connection = Classes.Conexao.conn;
+                                Classes.Conexao.conn.Open();
+                                mb.ImportFromFile(restaurar);
+                                txtRestaurar.Clear();
+                                Classes.Conexao.conn.Close();
 
+                                MessageBox.Show("Backup restaurado com sucesso!\nBackup restaurado:\n\n" + restaurar, "Restauração", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                restaurar = String.Empty;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("ERRO: " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro :" + ex.Message);
-                }
-
+                else MessageBox.Show("O arquivo de backup para restauração não foi encontrado.", "Restauração", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else
-            {
-                MessageBox.Show("Não existe arquivos de backup" + " para a restauração.\nFavor realizar backup", "Realizar Backup", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            else MessageBox.Show("Selecione um arquivo de backup para restaurar!", "Restauração", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

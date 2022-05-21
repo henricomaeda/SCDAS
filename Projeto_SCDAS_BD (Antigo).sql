@@ -1,5 +1,5 @@
-create database if not exists Projeto_SCDAS;
-use Projeto_SCDAS;
+create database if not exists scdas;
+use scdas;
 
 drop table if exists funcionarios;
 create table funcionarios (
