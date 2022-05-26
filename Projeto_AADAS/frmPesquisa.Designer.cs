@@ -68,6 +68,8 @@
             this.Column_24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtAtendido = new System.Windows.Forms.TextBox();
+            this.labAtendido = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtendidos)).BeginInit();
             this.SuspendLayout();
@@ -95,7 +97,7 @@
             // rbData
             // 
             this.rbData.AutoSize = true;
-            this.rbData.Location = new System.Drawing.Point(384, 48);
+            this.rbData.Location = new System.Drawing.Point(401, 48);
             this.rbData.Name = "rbData";
             this.rbData.Size = new System.Drawing.Size(14, 13);
             this.rbData.TabIndex = 7;
@@ -113,7 +115,7 @@
             "Data de Cadastro",
             "Data de Desligamento",
             "Data de Nascimento"});
-            this.cbData.Location = new System.Drawing.Point(404, 40);
+            this.cbData.Location = new System.Drawing.Point(421, 40);
             this.cbData.Name = "cbData";
             this.cbData.Size = new System.Drawing.Size(325, 30);
             this.cbData.TabIndex = 6;
@@ -123,7 +125,7 @@
             // 
             this.dtpFinal.CustomFormat = "dd/MMM/yyyy";
             this.dtpFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFinal.Location = new System.Drawing.Point(575, 83);
+            this.dtpFinal.Location = new System.Drawing.Point(592, 83);
             this.dtpFinal.Name = "dtpFinal";
             this.dtpFinal.Size = new System.Drawing.Size(154, 26);
             this.dtpFinal.TabIndex = 5;
@@ -133,7 +135,7 @@
             // 
             this.dtpInicial.CustomFormat = "dd/MMM/yyyy";
             this.dtpInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpInicial.Location = new System.Drawing.Point(404, 83);
+            this.dtpInicial.Location = new System.Drawing.Point(421, 83);
             this.dtpInicial.Name = "dtpInicial";
             this.dtpInicial.Size = new System.Drawing.Size(165, 26);
             this.dtpInicial.TabIndex = 4;
@@ -142,7 +144,7 @@
             // txtPesquisar
             // 
             this.txtPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPesquisar.Location = new System.Drawing.Point(16, 83);
+            this.txtPesquisar.Location = new System.Drawing.Point(35, 83);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(314, 26);
             this.txtPesquisar.TabIndex = 3;
@@ -151,7 +153,7 @@
             // rbCPF
             // 
             this.rbCPF.AutoSize = true;
-            this.rbCPF.Location = new System.Drawing.Point(199, 41);
+            this.rbCPF.Location = new System.Drawing.Point(218, 41);
             this.rbCPF.Name = "rbCPF";
             this.rbCPF.Size = new System.Drawing.Size(56, 26);
             this.rbCPF.TabIndex = 2;
@@ -162,7 +164,7 @@
             // rbCRA
             // 
             this.rbCRA.AutoSize = true;
-            this.rbCRA.Location = new System.Drawing.Point(271, 41);
+            this.rbCRA.Location = new System.Drawing.Point(290, 41);
             this.rbCRA.Name = "rbCRA";
             this.rbCRA.Size = new System.Drawing.Size(59, 26);
             this.rbCRA.TabIndex = 1;
@@ -174,7 +176,7 @@
             // 
             this.rbNome.AutoSize = true;
             this.rbNome.Checked = true;
-            this.rbNome.Location = new System.Drawing.Point(16, 41);
+            this.rbNome.Location = new System.Drawing.Point(35, 41);
             this.rbNome.Name = "rbNome";
             this.rbNome.Size = new System.Drawing.Size(167, 26);
             this.rbNome.TabIndex = 0;
@@ -480,12 +482,33 @@
             this.Column_26.ReadOnly = true;
             this.Column_26.Width = 70;
             // 
+            // txtAtendido
+            // 
+            this.txtAtendido.Enabled = false;
+            this.txtAtendido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAtendido.Location = new System.Drawing.Point(486, 457);
+            this.txtAtendido.Name = "txtAtendido";
+            this.txtAtendido.Size = new System.Drawing.Size(209, 23);
+            this.txtAtendido.TabIndex = 8;
+            // 
+            // labAtendido
+            // 
+            this.labAtendido.AutoSize = true;
+            this.labAtendido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labAtendido.Location = new System.Drawing.Point(483, 442);
+            this.labAtendido.Name = "labAtendido";
+            this.labAtendido.Size = new System.Drawing.Size(110, 13);
+            this.labAtendido.TabIndex = 21;
+            this.labAtendido.Text = "Nome do atendido";
+            // 
             // FrmPesquisa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(851, 495);
+            this.Controls.Add(this.labAtendido);
+            this.Controls.Add(this.txtAtendido);
             this.Controls.Add(this.dgvAtendidos);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnVoltar);
@@ -502,6 +525,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAtendidos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -546,5 +570,7 @@
         private System.Windows.Forms.DateTimePicker dtpFinal;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.RadioButton rbData;
+        private System.Windows.Forms.TextBox txtAtendido;
+        private System.Windows.Forms.Label labAtendido;
     }
 }

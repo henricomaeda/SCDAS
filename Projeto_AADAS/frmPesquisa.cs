@@ -70,6 +70,7 @@ namespace Projeto_AADAS
 				string DoencaAssociadas = string.Empty;
 				DateTime DataNascimento = DateTime.Now;
 				CPF = string.Empty;
+				txtAtendido.Text = "";
 				string RG = string.Empty;
 				string CRA = string.Empty;
 				string NomePai = string.Empty;
@@ -120,7 +121,11 @@ namespace Projeto_AADAS
 					Periodo = reader["Periodo"].ToString();
 					Codigo = int.Parse(reader["Codigo"].ToString());
 
-					if (numero == 1) CPF = reader["CPF"].ToString();
+					if (numero == 1)
+					{
+						CPF = reader["CPF"].ToString();
+						txtAtendido.Text = reader["NomeUsuario"].ToString();
+					}
 					this.dgvAtendidos.Rows.Add(Codigo, DataAdmissao.ToString("dd/MMM/yyyy"), DataDesligamento.ToString("dd/MMM/yyyy"), ProgramaProjeto, ProgramaOutros, DataCadastro.ToString("dd/MMM/yyyy"), NomeUsuario, GPA, DataAudiometria.ToString("dd/MMM/yyyy"), DoencaAssociadas, DataNascimento.ToString("dd/MMM/yyyy"), reader["CPF"].ToString(), RG, CRA, NomePai, NomeMae, NomeResponsavel, CPFResponsavel, RGResponsavel, Endereco, Telefone, Celular, TelefoneRecado, Escola, Escolaridade, Periodo);
 				}
 
@@ -145,7 +150,8 @@ namespace Projeto_AADAS
         {
             txtPesquisar.Clear();
             rbNome.Checked = true;
-        }
+			TxtPesquisar_TextChanged(sender, e);
+		}
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
@@ -182,7 +188,8 @@ namespace Projeto_AADAS
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dgvAtendidos.Rows[e.RowIndex];
-                CPF = row.Cells[11].Value.ToString();
+				txtAtendido.Text = row.Cells[6].Value.ToString();
+				CPF = row.Cells[11].Value.ToString();
             }
         }
     }
