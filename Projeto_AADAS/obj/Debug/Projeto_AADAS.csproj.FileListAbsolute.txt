@@ -177,7 +177,6 @@ C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmAbout.resources
 C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmAtendido.resources
 C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmBackup.resources
 C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmFuncionarios.resources
-C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmListaRelAtendido.resources
 C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmLogin.resources
 C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmMenuPrincipal.resources
 C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.FrmPesquisa.resources
