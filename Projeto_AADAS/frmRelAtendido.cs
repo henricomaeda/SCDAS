@@ -33,14 +33,6 @@ namespace Projeto_AADAS
 
         private void reportViewer1_Load(object sender, EventArgs e)
         {
-
-            var fieldInfo = typeof(Microsoft.Reporting.WinForms.RenderingExtension).GetField("m_isVisible", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-
-            foreach (var extension in this.reportViewer1.LocalReport.ListRenderingExtensions())
-            {
-                if (string.Compare("PDF", extension.Name) == 0)
-                    fieldInfo.SetValue(extension, false);
-            }
         }
     }
 }
