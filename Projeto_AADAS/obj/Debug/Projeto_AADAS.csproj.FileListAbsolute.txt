@@ -502,3 +502,4 @@ C:\Users\Adriano\Desktop\Nova pasta\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.
 C:\Users\Adriano\Desktop\Nova pasta\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.csproj.CopyComplete
 C:\Users\Adriano\Desktop\Nova pasta\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.exe
 C:\Users\Adriano\Desktop\Nova pasta\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.pdb
+C:\xampp\htdocs\SCDAS\Projeto_AADAS\obj\Debug\Projeto_AADAS.Splash.resources

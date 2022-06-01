@@ -66,13 +66,6 @@ namespace Projeto_AADAS
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            FrmMenuPrincipal principal = new FrmMenuPrincipal("Administrador");
-            principal.ShowDialog();
-        }
-
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.ExitThread();

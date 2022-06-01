@@ -156,6 +156,12 @@
     <Compile Include="Classes\Atendido.cs" />
     <Compile Include="Classes\Conexao.cs" />
     <Compile Include="Classes\Funcionarios.cs" />
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Relatorios\RelAtendidos.rdlc" />
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
@@ -327,6 +336,7 @@
     <None Include="Resources\database_down.png" />
     <None Include="Resources\database_process.png" />
     <None Include="Resources\pdf.png" />
+    <None Include="Resources\scdas.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
