@@ -2,7 +2,7 @@
 
 Sistema de cadastro para deficientes auditivos e surdos.
 
-Para a instalação do sistema, baixar o arquivo abaixo:
+Para a instalação do sistema, baixar o arquivo nomeado como:
 	
 	Instalador.zip
 
