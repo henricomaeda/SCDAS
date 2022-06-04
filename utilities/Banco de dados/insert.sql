@@ -1,0 +1,85 @@
+insert into atendidos (
+    Codigo,
+    DataAdmissao,
+    DataDesligamento,
+    ProgramaIns,
+    OutroPrograma,
+    DataCadastro,
+    NomeUsuario,
+    GrauPerdaAud,
+    DataAudiometria,
+    DoencasAss,
+    DataNascimento,
+    CPF,
+    RG,
+    CRA,
+    NomePai,
+    NomeMae,
+    NomeResp,
+    RGResp,
+    CPFResp,
+    Endereco,
+    Telefone,
+    Celular,
+    TelRecado,
+    Escola,
+    Escolaridade,
+    Periodo
+) values (
+    null,
+    '2021-06-12',
+    '2022-04-11',
+    'Programa Social',
+    'xxx',
+    '2021-06-01',
+    'Vitor Silva Costa',
+    'leve',
+    '2022-04-01',
+    'nenhuma',
+    '2005-03-03',
+    '777.897.458-78',
+    '45.987.458-7',
+    '784512',
+    'Jose Silva Costa',
+    'Joana Silva Costa',
+    'xxx',
+    '34.557.438-7',
+    '897.797.228-78',
+    'Rua das Flores 44 Campo Lindo',
+    '(12)3921-3711',
+    '(12)9921-4511',
+    '(12)3987-3411',
+    'Escola Pedro Maza',
+    'Ensino Medio',
+    'Tarde'
+);
+
+insert into funcionarios (
+	Codigo,
+	Nome,
+	ProgramaProjeto,
+	Celular,
+	Cargo,
+	Login,
+	Senha,
+	Email,
+	tipo,
+	cpf
+) values (
+	null,
+	'Adriano',
+	'TI',
+	'12988156355',
+	'Desenvolvedor',
+	'admin',
+	'111111',
+	'adriano@etec.sp.gov.br',
+	'Administrador',
+	'31684712831'
+);
+
+ INSERT INTO atendidos( Codigo, DataAdmissao, DataDesligamento, ProgramaIns, OutroPrograma, DataCadastro, NomeUsuario, GrauPerdaAud, DataAudiometria, DoencasAss, DataNascimento, CPF, RG, CRA, NomePai, NomeMae, NomeResp, RGResp, CPFResp, Endereco, Telefone, Celular, TelRecado, Escola, Escolaridade, Periodo ) 
+ 
+ VALUES( NULL, '2020-07-22', '2022-05-18', 'Librando Historias', 'xxx', '2020-06-13', 'Clara Martins Fontes', 'moderada', '2022-05-01', 'nenhuma', '2004-04-03', '117.127.444-98', '12.747.338-7', '178613', 'Paulo Martins Fontes', 'Lucia Martins Fontes', 'xxx', '17.417.008-8', '117.117.221-04', 'Rua dos Avioes 6547 Campo Lindo', '(12)3999-1511', '(12)9781-3311', '(00)0000-0000', 'Escola Estevam Ferri', 'Ensino Medio', 'Tarde' ), 
+ ( NULL, '2021-07-22', '2022-04-11', 'Programa Social', 'xxx', '2021-06-01', 'Renato Conceicao das Neves', 'severa', '2022-04-15', 'nenhuma', '2005-03-08', '478.321.787-78', '11.987.058-7', '369147', 'Marcio Conceicao das Neves', 'Sara Conceicao das Neves', 'xxx', '88.147.438-7', '003.080.707-78', 'Rua das Borboletas 777 Vila Industrial', '(12)3921-4771', '(12)9878-5511', '(12)3941-7703', 'Escola Alceu ', 'Ensino Fundamental', 'Tarde' );
+
