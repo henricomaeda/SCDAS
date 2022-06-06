@@ -76,7 +76,44 @@ insert into funcionarios (
 	'adriano@etec.sp.gov.br',
 	'Administrador',
 	'31684712831'
-);
+),
+(
+	null,
+	'Felipe',
+	'TI',
+	'1298897745',
+	'Desenvolvedor',
+	'admin',
+	'222222',
+	'felipe@etec.sp.gov.br',
+	'Administrador',
+	'51712884798'
+),
+(
+	null,
+	'Aparecida',
+	'Recepcao',
+	'1298774488',
+	'Recepcao',
+	'aparecida',
+	'333333',
+	'aparecida@aadas.sp.gov.br',
+	'Funcionario',
+	'71718884798'
+),
+(
+	null,
+	'Aline',
+	'RH',
+	'1298874512',
+	'RH',
+	'aline',
+	'444444',
+	'aline@aadas.sp.gov.br',
+	'Funcionario',
+	'44710084790'
+),
+
 
  INSERT INTO atendidos( Codigo, DataAdmissao, DataDesligamento, ProgramaIns, OutroPrograma, DataCadastro, NomeUsuario, GrauPerdaAud, DataAudiometria, DoencasAss, DataNascimento, CPF, RG, CRA, NomePai, NomeMae, NomeResp, RGResp, CPFResp, Endereco, Telefone, Celular, TelRecado, Escola, Escolaridade, Periodo ) 
  
