@@ -342,6 +342,7 @@
             this.dataGridView1.RowHeadersWidth = 50;
             this.dataGridView1.Size = new System.Drawing.Size(944, 237);
             this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Column_01
             // 
@@ -481,7 +482,7 @@
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.BtnCadastrar_Click);
             // 
-            // frmFuncionarios
+            // FrmFuncionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -497,7 +498,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "frmFuncionarios";
+            this.Name = "FrmFuncionarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FUNCIONÁRIOS [PESQUISA / CADASTRO]";
             this.gbDadosFuncionario.ResumeLayout(false);
