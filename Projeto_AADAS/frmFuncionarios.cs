@@ -8,10 +8,17 @@ namespace Projeto_AADAS
     public partial class FrmFuncionarios : Form
     {
         int Codigo = 0;
+        bool load = false;
 
         public FrmFuncionarios()
         {
             InitializeComponent();
+        }
+
+        private void FrmFuncionarios_Load(object sender, EventArgs e)
+        {
+            load = true;
+            BtnPesquisar_Click_1(sender, e);
         }
 
         private void BtnVoltar_Click(object sender, EventArgs e)
@@ -114,7 +121,6 @@ namespace Projeto_AADAS
             txtEmail.Clear();
 
             txtCPFConsulta.Clear();
-            this.dataGridView1.Rows.Clear();
 
             btnExcluir.Enabled = false;
             btnAtualizar.Enabled = false;
@@ -167,109 +173,114 @@ namespace Projeto_AADAS
 
         private void BtnLimpar_Click(object sender, EventArgs e)
         {
-            Limpar();
-        }
-
-        private void BtnPesquisar_Click_1(object sender, EventArgs e)
-        {
-            if (txtCPFConsulta.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("Preencha com o CPF");
-                txtCPFConsulta.Focus();
-            }
-            else
-            {
-                try
-                {
-                    string sql = @"select * from funcionarios where cpf like '" + txtCPFConsulta.Text + "%'";
-
-                    Codigo = 0;
-                    string Nome = string.Empty;
-                    string Programa = string.Empty;
-                    string Celular = string.Empty;
-                    string Cargo = string.Empty;
-                    string Login = string.Empty;
-                    string Senha = string.Empty;
-                    string Email = string.Empty;
-                    string Permissao = string.Empty;
-                    string CPF = string.Empty;
-                    Classes.Conexao.Conectar();
-                    MySqlCommand cmd = new MySqlCommand(sql, Classes.Conexao.conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    this.dataGridView1.Rows.Clear();
-                    while (reader.Read())
-                    {
-                        Nome = reader["Nome"].ToString();
-                        Programa = reader["ProgramaProjeto"].ToString();
-                        Celular = reader["Celular"].ToString();
-                        Cargo = reader["Cargo"].ToString();
-                        Login = reader["Login"].ToString();
-                        Senha = reader["Senha"].ToString();
-                        Email = reader["Email"].ToString();
-                        Permissao = reader["tipo"].ToString();
-                        CPF = reader["cpf"].ToString();
-
-                        if (Codigo == 0)
-                        {
-                            txtNome.Text = Nome;
-                            txtPrograma.Text = Programa;
-                            mskCel.Text = Celular;
-                            txtCargo.Text = Cargo;
-                            txtLogin.Text = Login;
-                            txtPassword.Text = Senha;
-                            txtEmail.Text = Email;
-                            cbPermissao.Text = Permissao;
-                            txtCPF.Text = CPF;
-                        }
-
-                        Codigo = int.Parse(reader["Codigo"].ToString());
-                        this.dataGridView1.Rows.Add(Codigo, Nome, Programa, Celular, Cargo, Login, Senha, Email, Permissao, CPF);
-                        btnExcluir.Enabled = true;
-                        btnAtualizar.Enabled = true;
-                        btnCadastrar.Enabled = false;
-                    }
-
-                    if (Codigo == 0)
-                    {
-                        Limpar();
-                        MessageBox.Show("Não há funcionário cadastrado com esse CPF!");
-                    }
-                    else
-                    {
-                        btnExcluir.Enabled = true;
-                        btnAtualizar.Enabled = true;
-                        btnCadastrar.Enabled = false;
-                    }
-
-                    dataGridView1.ClearSelection();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro: " + ex.Message);
-                }
-                finally
-                {
-                    Classes.Conexao.Desconectar();
-                }
-            }
+            load = true;
+            txtCPFConsulta.Text = String.Empty;
+            BtnPesquisar_Click_1(sender, e);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                txtCPFConsulta.Text = row.Cells[9].Value.ToString();
+                BtnPesquisar_Click_1(sender, e);
+            }
+        }
 
+        private void BtnPesquisar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = String.Empty;
+                bool cpf = false;
+
+                if (txtCPFConsulta.Text.Trim().Length == 0) sql = @"select * from funcionarios order by Codigo desc";
+                else
+                {
+                    sql = @"select * from funcionarios where cpf like '" + txtCPFConsulta.Text + "%'";
+                    cpf = true;
+                }
+
+                Codigo = 0;
+                string Nome = string.Empty;
+                string Programa = string.Empty;
+                string Celular = string.Empty;
+                string Cargo = string.Empty;
+                string Login = string.Empty;
+                string Senha = string.Empty;
+                string Email = string.Empty;
+                string Permissao = string.Empty;
+                string CPF = string.Empty;
+
+                Classes.Conexao.Conectar();
+                MySqlCommand cmd = new MySqlCommand(sql, Classes.Conexao.conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                this.dataGridView1.Rows.Clear();
+                while (reader.Read())
+                {
+                    Nome = reader["Nome"].ToString();
+                    Programa = reader["ProgramaProjeto"].ToString();
+                    Celular = reader["Celular"].ToString();
+                    Cargo = reader["Cargo"].ToString();
+                    Login = reader["Login"].ToString();
+                    Senha = reader["Senha"].ToString();
+                    Email = reader["Email"].ToString();
+                    Permissao = reader["tipo"].ToString();
+                    CPF = reader["cpf"].ToString();
+
+                    if (Codigo == 0)
+                    {
+                        txtNome.Text = Nome;
+                        txtPrograma.Text = Programa;
+                        mskCel.Text = Celular;
+                        txtCargo.Text = Cargo;
+                        txtLogin.Text = Login;
+                        txtPassword.Text = Senha;
+                        txtEmail.Text = Email;
+                        cbPermissao.Text = Permissao;
+                        txtCPF.Text = CPF;
+                    }
+
+                    Codigo = int.Parse(reader["Codigo"].ToString());
+                    this.dataGridView1.Rows.Add(Codigo, Nome, Programa, Celular, Cargo, Login, Senha, Email, Permissao, CPF);
+                    btnExcluir.Enabled = true;
+                    btnAtualizar.Enabled = true;
+                    btnCadastrar.Enabled = false;
+                }
+
+                if (!cpf)
+                {
+                    Limpar();
+                    if (load) load = false;
+                    else MessageBox.Show("Preencha o campo com o CPF!");
+                }
+
+                if (Codigo == 0)
+                {
+                    Limpar();
+                    load = true;
+                    BtnPesquisar_Click_1(sender, e);
+                    MessageBox.Show("Não há funcionário cadastrado com esse CPF!");
+                }
+                else
+                {
+                    btnExcluir.Enabled = true;
+                    btnAtualizar.Enabled = true;
+                    btnCadastrar.Enabled = false;
+                }
+
+                dataGridView1.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+            finally
+            {
+                Classes.Conexao.Desconectar();
+            }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

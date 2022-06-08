@@ -54,6 +54,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnAtualizar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
             this.Column_01 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_02 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_03 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,11 +69,6 @@
             this.Column_08 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_09 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnLimpar = new System.Windows.Forms.Button();
-            this.btnVoltar = new System.Windows.Forms.Button();
-            this.btnAtualizar = new System.Windows.Forms.Button();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnCadastrar = new System.Windows.Forms.Button();
             this.gbDadosFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -328,6 +328,7 @@
             this.Column_10});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.Location = new System.Drawing.Point(0, 331);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -343,72 +344,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(944, 237);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Column_01
-            // 
-            this.Column_01.HeaderText = "Código";
-            this.Column_01.Name = "Column_01";
-            this.Column_01.ReadOnly = true;
-            this.Column_01.Width = 50;
-            // 
-            // Column_02
-            // 
-            this.Column_02.HeaderText = "Nome do Funcionário";
-            this.Column_02.Name = "Column_02";
-            this.Column_02.ReadOnly = true;
-            this.Column_02.Width = 133;
-            // 
-            // Column_03
-            // 
-            this.Column_03.HeaderText = "Programa";
-            this.Column_03.Name = "Column_03";
-            this.Column_03.ReadOnly = true;
-            // 
-            // Column_04
-            // 
-            this.Column_04.HeaderText = "Celular";
-            this.Column_04.Name = "Column_04";
-            this.Column_04.ReadOnly = true;
-            // 
-            // Column_05
-            // 
-            this.Column_05.HeaderText = "Cargo";
-            this.Column_05.Name = "Column_05";
-            this.Column_05.ReadOnly = true;
-            // 
-            // Column_06
-            // 
-            this.Column_06.HeaderText = "Login";
-            this.Column_06.Name = "Column_06";
-            this.Column_06.ReadOnly = true;
-            // 
-            // Column_07
-            // 
-            this.Column_07.HeaderText = "Senha";
-            this.Column_07.Name = "Column_07";
-            this.Column_07.ReadOnly = true;
-            this.Column_07.Width = 80;
-            // 
-            // Column_08
-            // 
-            this.Column_08.HeaderText = "E-mail";
-            this.Column_08.Name = "Column_08";
-            this.Column_08.ReadOnly = true;
-            this.Column_08.Width = 111;
-            // 
-            // Column_09
-            // 
-            this.Column_09.HeaderText = "Permissão";
-            this.Column_09.Name = "Column_09";
-            this.Column_09.ReadOnly = true;
-            this.Column_09.Width = 72;
-            // 
-            // Column_10
-            // 
-            this.Column_10.HeaderText = "CPF";
-            this.Column_10.Name = "Column_10";
-            this.Column_10.ReadOnly = true;
-            this.Column_10.Width = 98;
             // 
             // btnLimpar
             // 
@@ -482,6 +417,82 @@
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.BtnCadastrar_Click);
             // 
+            // Column_01
+            // 
+            this.Column_01.HeaderText = "Código";
+            this.Column_01.Name = "Column_01";
+            this.Column_01.ReadOnly = true;
+            this.Column_01.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column_01.Width = 50;
+            // 
+            // Column_02
+            // 
+            this.Column_02.HeaderText = "Nome do Funcionário";
+            this.Column_02.Name = "Column_02";
+            this.Column_02.ReadOnly = true;
+            this.Column_02.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column_02.Width = 133;
+            // 
+            // Column_03
+            // 
+            this.Column_03.HeaderText = "Programa";
+            this.Column_03.Name = "Column_03";
+            this.Column_03.ReadOnly = true;
+            this.Column_03.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_04
+            // 
+            this.Column_04.HeaderText = "Celular";
+            this.Column_04.Name = "Column_04";
+            this.Column_04.ReadOnly = true;
+            this.Column_04.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_05
+            // 
+            this.Column_05.HeaderText = "Cargo";
+            this.Column_05.Name = "Column_05";
+            this.Column_05.ReadOnly = true;
+            this.Column_05.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_06
+            // 
+            this.Column_06.HeaderText = "Login";
+            this.Column_06.Name = "Column_06";
+            this.Column_06.ReadOnly = true;
+            this.Column_06.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column_07
+            // 
+            this.Column_07.HeaderText = "Senha";
+            this.Column_07.Name = "Column_07";
+            this.Column_07.ReadOnly = true;
+            this.Column_07.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column_07.Width = 80;
+            // 
+            // Column_08
+            // 
+            this.Column_08.HeaderText = "E-mail";
+            this.Column_08.Name = "Column_08";
+            this.Column_08.ReadOnly = true;
+            this.Column_08.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column_08.Width = 111;
+            // 
+            // Column_09
+            // 
+            this.Column_09.HeaderText = "Permissão";
+            this.Column_09.Name = "Column_09";
+            this.Column_09.ReadOnly = true;
+            this.Column_09.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column_09.Width = 72;
+            // 
+            // Column_10
+            // 
+            this.Column_10.HeaderText = "CPF";
+            this.Column_10.Name = "Column_10";
+            this.Column_10.ReadOnly = true;
+            this.Column_10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column_10.Width = 98;
+            // 
             // FrmFuncionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,6 +512,7 @@
             this.Name = "FrmFuncionarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FUNCIONÁRIOS [PESQUISA / CADASTRO]";
+            this.Load += new System.EventHandler(this.FrmFuncionarios_Load);
             this.gbDadosFuncionario.ResumeLayout(false);
             this.gbDadosFuncionario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -537,6 +549,7 @@
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox txtCPFConsulta;
+        public System.Windows.Forms.MaskedTextBox txtCPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_01;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_02;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_03;
@@ -547,6 +560,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_08;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_09;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_10;
-        public System.Windows.Forms.MaskedTextBox txtCPF;
     }
 }
