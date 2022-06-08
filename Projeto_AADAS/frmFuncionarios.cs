@@ -92,6 +92,8 @@ namespace Projeto_AADAS
                             Classes.Funcionarios.Inserir(txtNome.Text, txtPrograma.Text, mskCel.Text, txtCargo.Text, txtLogin.Text, txtPassword.Text, txtEmail.Text, cbPermissao.Text, txtCPF.Text);
                             MessageBox.Show("Funcionario cadastrado com sucesso !!!");
                             Limpar();
+                            load = true;
+                            BtnPesquisar_Click_1(sender, e);
 
                             dr1.Close();
                         }
@@ -121,10 +123,6 @@ namespace Projeto_AADAS
             txtEmail.Clear();
 
             txtCPFConsulta.Clear();
-
-            btnExcluir.Enabled = false;
-            btnAtualizar.Enabled = false;
-            btnCadastrar.Enabled = true;
             dataGridView1.DataSource = null;
         }
 
@@ -136,6 +134,8 @@ namespace Projeto_AADAS
                 Classes.Funcionarios.Atualizar(txtNome.Text, txtPrograma.Text, mskCel.Text, txtCargo.Text, txtLogin.Text, txtPassword.Text, txtEmail.Text, cbPermissao.Text, txtCPF.Text, Codigo);
                 MessageBox.Show("Funcionário atualizado com sucesso !!!");
                 Limpar();
+                load = true;
+                BtnPesquisar_Click_1(sender, e);
             }
             catch (Exception ex)
             {
@@ -190,6 +190,22 @@ namespace Projeto_AADAS
 
         private void BtnPesquisar_Click_1(object sender, EventArgs e)
         {
+            void AtivarCadastro(bool ativar = true)
+            {
+                if (ativar)
+                {
+                    btnExcluir.Enabled = false;
+                    btnAtualizar.Enabled = false;
+                    btnCadastrar.Enabled = true;
+                }
+                else
+                {
+                    btnExcluir.Enabled = true;
+                    btnAtualizar.Enabled = true;
+                    btnCadastrar.Enabled = false;
+                }
+            }
+
             try
             {
                 string sql = String.Empty;
@@ -245,12 +261,13 @@ namespace Projeto_AADAS
 
                     Codigo = int.Parse(reader["Codigo"].ToString());
                     this.dataGridView1.Rows.Add(Codigo, Nome, Programa, Celular, Cargo, Login, Senha, Email, Permissao, CPF);
-                    btnExcluir.Enabled = true;
-                    btnAtualizar.Enabled = true;
-                    btnCadastrar.Enabled = false;
                 }
 
-                if (!cpf)
+                if (cpf)
+                {
+
+                }
+                else
                 {
                     Limpar();
                     if (load) load = false;
@@ -263,12 +280,12 @@ namespace Projeto_AADAS
                     load = true;
                     BtnPesquisar_Click_1(sender, e);
                     MessageBox.Show("Não há funcionário cadastrado com esse CPF!");
+                    AtivarCadastro();
                 }
                 else
                 {
-                    btnExcluir.Enabled = true;
-                    btnAtualizar.Enabled = true;
-                    btnCadastrar.Enabled = false;
+                    if (cpf) AtivarCadastro(false);
+                    else AtivarCadastro();
                 }
 
                 dataGridView1.ClearSelection();

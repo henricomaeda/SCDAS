@@ -8,7 +8,7 @@ namespace Projeto_AADAS
     public partial class FrmAtendido : Form
     {
         int Codigo = 0;
-        string CPF = string.Empty;
+        public string CPF = string.Empty;
 
         public FrmAtendido(string CPF_Editar)
         {
@@ -18,11 +18,7 @@ namespace Projeto_AADAS
 
         private void FrmAtendido2_Load(object sender, EventArgs e)
         {
-            if (CPF != string.Empty)
-            {
-                txtCPFConsulta.Text = CPF;
-                BtnPesquisar_Click(sender, e);
-            }
+            if (CPF != string.Empty) BtnPesquisar_Click(sender, e);
         }
 
         public void Limpar()
@@ -54,14 +50,12 @@ namespace Projeto_AADAS
             txtEscolaridade.Clear();
             cbPeriodo.SelectedIndex = -1;
 
-            txtCPFConsulta.Clear();
-            this.dataGridView1.Rows.Clear();
+            CPF = string.Empty;
 
             btnExcluir.Enabled = false;
             btnAtualizar.Enabled = false;
             btnRelAtend.Enabled = false;
             btnCadastrar.Enabled = true;
-            dataGridView1.DataSource = null;
         }
 
         private void BtnCadastrar_Click(object sender, EventArgs e)
@@ -244,16 +238,13 @@ namespace Projeto_AADAS
 
         private void BtnPesquisar_Click(object sender, EventArgs e)
         {
-            if (txtCPFConsulta.Text.Trim().Length == 0)
+            if (CPF != string.Empty)
             {
-                MessageBox.Show("Preencha com o CPF");
-                txtCPFConsulta.Focus();
-            }
-            else
-            {
+                string CPFPESQUISAR = CPF;
+
                 try
                 {
-                    string sql = @"select * from atendidos where cpf like '" + txtCPFConsulta.Text + "%' ";
+                    string sql = @"select * from atendidos where cpf like '" + CPFPESQUISAR + "%' ";
 
                     Codigo = 0;
                     DateTime DataAdmissao = DateTime.Now;
@@ -286,7 +277,6 @@ namespace Projeto_AADAS
                     MySqlCommand cmd = new MySqlCommand(sql, Classes.Conexao.conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
 
-                    this.dataGridView1.Rows.Clear();
                     while (reader.Read())
                     {
                         DataAdmissao = Convert.ToDateTime(reader["DataAdmissao"].ToString());
@@ -315,126 +305,6 @@ namespace Projeto_AADAS
                         Escolaridade = reader["Escolaridade"].ToString();
                         Periodo = reader["Periodo"].ToString();
 
-                        if (Codigo == 0)
-                        {
-                            dtpDataAdmissao.Text = DataAdmissao.ToString();
-                            dtpDataDesligamento.Text = DataDesligamento.ToString();
-                            dtpDataCadastro.Text = DataCadastro.ToString();
-                            dtpDataAudiometria.Text = DataAudiometria.ToString();
-                            txtNomeUsuario.Text = NomeUsuario;
-                            cbProgramaProjeto.Text = ProgramaProjeto;
-                            txtDoencaAss.Text = DoencaAssociadas;
-                            txtGPA.Text = GPA;
-                            txtProgramaOutros.Text = ProgramaOutros;
-                            dtpDataNascimento.Text = DataNascimento.ToString();
-                            mskCPF.Text = CPF;
-                            mskRG.Text = RG;
-                            txtCRA.Text = CRA;
-                            txtNomePai.Text = NomePai;
-                            txtNomeMae.Text = NomeMae;
-                            txtNomeResp.Text = NomeResponsavel;
-                            mskRGResp.Text = RGResponsavel;
-                            mskCPFResp.Text = CPFResponsavel;
-                            txtEndereco.Text = Endereco;
-                            mskTelefone.Text = Telefone;
-                            mskCelular.Text = Celular;
-                            mskTelRec.Text = TelefoneRecado;
-                            txtEscolaridade.Text = Escolaridade;
-                            txtEscola.Text = Escola;
-                            cbPeriodo.Text = Periodo;
-                            Codigo = int.Parse(reader["Codigo"].ToString());
-                        }
-                        this.dataGridView1.Rows.Add(int.Parse(reader["Codigo"].ToString()), DataAdmissao.ToString("dd/MMM/yyyy"), DataDesligamento.ToString("dd/MMM/yyyy"), ProgramaProjeto, ProgramaOutros, DataCadastro.ToString("dd/MMM/yyyy"), NomeUsuario, GPA, DataAudiometria.ToString("dd/MMM/yyyy"), DoencaAssociadas, DataNascimento.ToString("dd/MMM/yyyy"), CPF, RG, CRA, NomePai, NomeMae, NomeResponsavel, RGResponsavel, CPFResponsavel, Endereco, Telefone, Celular, TelefoneRecado, Escola, Escolaridade, Periodo);
-                        btnExcluir.Enabled = true;
-                        btnAtualizar.Enabled = true;
-                        btnRelAtend.Enabled = true;
-                        btnCadastrar.Enabled = false;
-                    }
-
-                    if (Codigo == 0)
-                    {
-                        Limpar();
-                        MessageBox.Show("Não há atendido cadastrado com esse CPF!");
-                    }
-                    else
-                    {
-                        btnExcluir.Enabled = true;
-                        btnAtualizar.Enabled = true;
-                        btnRelAtend.Enabled = true;
-                        btnCadastrar.Enabled = false;
-                    }
-
-                    dataGridView1.ClearSelection();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro :" + ex.Message);
-                }
-                finally
-                {
-                    Classes.Conexao.Desconectar();
-                }
-            }
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            Limpar();
-        }
-
-        private void BtnRelAtend_Click(object sender, EventArgs e)
-        {
-            FrmRelAtendido form = new FrmRelAtendido(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-            form.Show();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var message = "Você tem certeza que deseja alterar os dados exibidos?";
-                var buttons = MessageBoxButtons.YesNo;
-                var icon = MessageBoxIcon.Question;
-
-                DialogResult result = MessageBox.Show(message, "Atendidos", buttons, icon);
-                if (result == DialogResult.Yes)
-                {
-                    DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
-                    CPF = row.Cells[11].Value.ToString();
-
-                    string sql = @"select * from atendidos where cpf = '" + CPF + "' ";
-                    Classes.Conexao.Conectar();
-                    MySqlCommand cmd = new MySqlCommand(sql, Classes.Conexao.conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        DateTime DataAdmissao = Convert.ToDateTime(reader["DataAdmissao"].ToString());
-                        DateTime DataDesligamento = Convert.ToDateTime(reader["DataDesligamento"].ToString());
-                        string ProgramaProjeto = reader["ProgramaIns"].ToString();
-                        string ProgramaOutros = reader["OutroPrograma"].ToString();
-                        DateTime DataCadastro = Convert.ToDateTime(reader["DataCadastro"].ToString());
-                        string NomeUsuario = reader["NomeUsuario"].ToString();
-                        string GPA = reader["GrauPerdaAud"].ToString();
-                        DateTime DataAudiometria = Convert.ToDateTime(reader["DataAudiometria"].ToString());
-                        string DoencaAssociadas = reader["DoencasAss"].ToString();
-                        DateTime DataNascimento = Convert.ToDateTime(reader["DataNascimento"].ToString());
-                        string RG = reader["RG"].ToString();
-                        string CRA = reader["CRA"].ToString();
-                        string NomePai = reader["NomePai"].ToString();
-                        string NomeMae = reader["NomeMae"].ToString();
-                        string NomeResponsavel = reader["NomeResp"].ToString();
-                        string RGResponsavel = reader["RGResp"].ToString();
-                        string CPFResponsavel = reader["CPFResp"].ToString();
-                        string Endereco = reader["Endereco"].ToString();
-                        string Telefone = reader["Telefone"].ToString();
-                        string Celular = reader["Celular"].ToString();
-                        string TelefoneRecado = reader["TelRecado"].ToString();
-                        string Escola = reader["Escola"].ToString();
-                        string Escolaridade = reader["Escolaridade"].ToString();
-                        string Periodo = reader["Periodo"].ToString();
-
-                        Codigo = int.Parse(reader["Codigo"].ToString());
                         dtpDataAdmissao.Text = DataAdmissao.ToString();
                         dtpDataDesligamento.Text = DataDesligamento.ToString();
                         dtpDataCadastro.Text = DataCadastro.ToString();
@@ -460,9 +330,34 @@ namespace Projeto_AADAS
                         txtEscolaridade.Text = Escolaridade;
                         txtEscola.Text = Escola;
                         cbPeriodo.Text = Periodo;
+                        Codigo = int.Parse(reader["Codigo"].ToString());
+
+                        btnExcluir.Enabled = true;
+                        btnAtualizar.Enabled = true;
+                        btnRelAtend.Enabled = true;
+                        btnCadastrar.Enabled = false;
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro :" + ex.Message);
+                }
+                finally
+                {
+                    Classes.Conexao.Desconectar();
+                }
             }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            Limpar();
+        }
+
+        private void BtnRelAtend_Click(object sender, EventArgs e)
+        {
+            FrmRelAtendido form = new FrmRelAtendido(Codigo.ToString());
+            form.Show();
         }
     }
 }

@@ -57,7 +57,7 @@ create table atendidos (
 	CRA						varchar(20)			not null,
 	NomePai					varchar(100)		not null,
 	NomeMae					varchar(100)		not null,
-	NomeResp				varchar(100)		not null,
+	NomeResp				varchar(100)			null,
 	RGResp					varchar(20)			not null,
 	CPFResp					varchar(20)			not null,
 	Endereco				varchar(150)		not null,
